@@ -6,6 +6,7 @@ def get_range_for_difficulty(difficulty: str):
         return 1, 5
     if difficulty == "Normal":
         return 1, 100
+    # FIXME: Logic breaks here — Hard range was 1-50, making it easier than Normal (1-100).
     if difficulty == "Hard":
         return 1, 1000
     return 1, 100
@@ -34,6 +35,7 @@ def check_guess(guess, secret):
         return "Win", "🎉 Correct!"
 
     try:
+        # FIXME: Logic breaks here — hints were inverted: "Too High" said Go HIGHER and "Too Low" said Go LOWER.
         if guess > secret:
             return "Too High", "📉 Go LOWER!"
         else:
