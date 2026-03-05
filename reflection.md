@@ -42,19 +42,26 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 ## 4. What did you learn about Streamlit and state?
 
 - In your own words, explain why the secret number kept changing in the original app.
-  The secret number kept changing because Streamlit reruns the entire script from top to bottom every time the user interacts with the page. Without session state, `random.randint()` was called fresh on every rerun, generating a new secret each time the user clicked a button or typed a guess.
+  The secret number kept changing because Streamlit reruns the entire script from top to bottom every time the user interacts with the page. Without session state, random.randint()` was called fresh on every rerun, generating a new secret each time the user clicked a button or typed a guess.
 
 - How would you explain Streamlit "reruns" and session state to a friend who has never used Streamlit?
   Imagine every time you click a button on a website, the whole page reloads from scratch and forgets everything. That's Streamlit — every interaction triggers a full rerun of your Python script. Session state is like a sticky notepad that survives those reruns, so you can write values down (like the secret number or the attempt count) and they'll still be there the next time the script runs.
 
 - What change did you make that finally gave the game a stable secret number?
-  I wrapped the secret generation in an `if "secret" not in st.session_state` check, so it only generates a new random number the very first time the page loads. After that, the secret is stored in session state and reused on every subsequent rerun. I also added a check for when the difficulty changes, so the secret resets to a value within the new range.
+  I wrapped the secret generation in an if "secret" not in st.session_state check, so it only generates a new random number the very first time the page loads. After that, the secret is stored in session state and reused on every subsequent rerun. I also added a check for when the difficulty changes, so the secret resets to a value within the new range.
 
 ---
 
 ## 5. Looking ahead: your developer habits
 
 - What is one habit or strategy from this project that you want to reuse in future labs or projects?
-  - This could be a testing habit, a prompting strategy, or a way you used Git.
+- This could be a testing habit, a prompting strategy, or a way you used Git.
+  Finding bugs on my own before allowing the AI to find. I was able to find some bugs the AI could not notice
+
 - What is one thing you would do differently next time you work with AI on a coding task?
+  I would try and understand the code first before prompting
 - In one or two sentences, describe how this project changed the way you think about AI generated code.
+  I sometime overestimate the abilities of AI , I will say have a human in the loop is always needed for better results
+
+Challenge 5: AI Model Comparison:
+I realized all the models wrote code fixes for me without they seeing the original code, which can cause issues. Comparing the responses, only one model's fix fit directly into my code however, I still need to be cautious since the model guessed a right response without seeing the original code
